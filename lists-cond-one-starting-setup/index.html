@@ -26,7 +26,12 @@
         <!-- V-If Removes and Add Elements form the DOM , but V-Show only Hide's the Element -->
 <!--        <p v-show="goals.length === 0">No goals have been added yet - please start adding some!</p>-->
 <!--        <ul v-show="goals.length >0">-->
-            <li v-for="(goal, index) in goals" @click="removeGoal(index)">{{ index }} - {{ goal }}</li>
+        <li v-for="(goal, index) in goals" :key="goal" @click="removeGoal(index)">
+            <p>{{ index }} - {{ goal }}</p>
+            <label>
+                <input type="text" @click.stop>
+            </label>
+        </li>
         </ul>
 <!--    <ul>-->
 <!--        <li v-for="(value , key) in {name:'shubham', age:'31'}"  v-for"num in 10">{{ value }} : {{ key }}  {{ num }}</li>-->
