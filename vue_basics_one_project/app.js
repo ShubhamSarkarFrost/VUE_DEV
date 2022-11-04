@@ -1,3 +1,4 @@
+const Vue = require("@vue/runtime-dom");
 const app = Vue.createApp({
     data() {
         return {
