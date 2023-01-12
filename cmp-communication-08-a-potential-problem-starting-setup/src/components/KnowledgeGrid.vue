@@ -6,14 +6,12 @@
       :id="topic.id"
       :topic-name="topic.title"
       :description="topic.description"
-      @select-topic="$emit('select-topic', $event)"
     ></knowledge-element>
   </ul>
 </template>
 
 <script>
 export default {
-  props: ['topics'],
-  emits: ['select-topic']
+  inject: ['topics'],          // In Order to Pass the Data through Multiple Component , use Provide and Inject
 };
 </script>

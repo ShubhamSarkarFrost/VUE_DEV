@@ -4,7 +4,7 @@
       :topic-title="activeTopic && activeTopic.title"
       :text="activeTopic && activeTopic.fullText"
     ></active-element>
-    <knowledge-base :topics="topics" @select-topic="activateTopic"></knowledge-base>
+    <knowledge-base></knowledge-base>
   </div>
 </template>
 
@@ -32,11 +32,32 @@ export default {
       activeTopic: null,
     };
   },
+
+  // In Order to Pass the Data through Multiple Component , use Provide and Inject
+  provide() {
+    return {
+      topics: this.topics,
+      selectTopic: this.activateTopic
+    }
+  },
+
   methods: {
     activateTopic(topicId) {
       this.activeTopic = this.topics.find((topic) => topic.id === topicId);
     },
   },
+
+  mounted() {
+    setTimeout(() =>{
+      this.topics.push({
+        id: 'events',
+        title: 'Events Trigerring',
+        description: 'Trigering of a Do Able Event , when Users Perform an Action',
+        fullText:'Trigering of a Do Able Event , when Users Perform an Action'
+      })
+    }, 3000)
+  }
+
 };
 </script>
 
