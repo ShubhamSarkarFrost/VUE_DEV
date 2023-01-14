@@ -1,9 +1,10 @@
 <template>
     <base-card>
-    <header>
+<!--      shortcut for v-slot is #-->
+    <template #header>
       <h3>{{ fullName }}</h3>
       <base-badge :type="role" :caption="role.toUpperCase()"></base-badge>
-    </header>
+    </template>
     <p>{{ infoText }}</p>
     </base-card>
 </template>
@@ -16,11 +17,3 @@ export default {
 };
 </script>
 
-// scoped Style only Affects the component in which it is defined
-<style scoped>
-section header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-</style>
