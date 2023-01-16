@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import BaseCard from "./BaseCard";
+import BaseCard from "./UI/BaseCard";
 export default {
   components: {BaseCard},
   props: ['fullName', 'infoText', 'role'],

@@ -27,7 +27,7 @@
 <script>
 
 //Local Import of Component Using Component Keyword
-import TheHeader from './components/TheHeader.vue'
+import TheHeader from './components/layout/TheHeader.vue'
 import ManageGoals from './components/ManageGoals.vue'
 import ActiveGoals from './components/ActiveGoals.vue'
 // import UserInfo from "./components/UserInfo";

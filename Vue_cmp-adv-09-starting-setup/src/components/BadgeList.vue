@@ -37,7 +37,7 @@ li {
 }
 </style>
 <script>
-import BaseCard from "./BaseCard";
+import BaseCard from "./UI/BaseCard";
 export default {
   components: {BaseCard}
 }
