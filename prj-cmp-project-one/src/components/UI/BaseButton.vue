@@ -1,5 +1,6 @@
 <template>
   <button :type="type" :class="mode">
+    <slot></slot>
   </button>
 </template>
 
@@ -7,10 +8,7 @@
 export default {
   props: ['type', 'mode']
 }
-
 </script>
-
-
 
 <style scoped>
 button {
@@ -38,6 +36,4 @@ button:active {
 .flat:active {
   background-color: #edd2ff;
 }
-
-
 </style>
