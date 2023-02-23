@@ -1,4 +1,4 @@
-Vue.createApp({
+l̥Vue.createApp({
   data() {
     return {
       goals: [],
