@@ -22,7 +22,6 @@
 import SurveyResult from './SurveyResult.vue';
 
 export default {
-  props: ['results'],
   components: {
     SurveyResult,
   },
@@ -32,13 +31,25 @@ export default {
     }
   },
   methods: {
-    //  loadExperiences() {
-    //         axios.get('https://vue-http-7d2b7-default-rtdb.firebaseio.com/surveys.json').then(function(response){
-    //           if(response.ok){
-    //               response.json() 
-    //           }
-    //         })
-    //   }
+     loadExperiences() {
+            fetch('https://vue-http-7d2b7-default-rtdb.firebaseio.com/surveys.json').then((response) =>{
+              if(response.ok){
+                return  response.json() 
+              }
+            }).then((data) => {
+              // console.log(data)
+              const results = []; 
+              for(const id in data) {
+                results.push(
+                  {id: id,
+                     name:data[id].name ,
+                      rating:data[id].rating
+                    })
+              }
+              this.resultts = results
+            })
+      }
+      
   }    
 };
 </script>
