@@ -41,6 +41,7 @@
         <p v-if="invalidInput">
           One or more input fields are invalid. Please check your provided data.
         </p>
+        <p v-if="error">{{ error }}</p>
         <div>
           <base-button>Submit</base-button>
         </div>
@@ -51,13 +52,14 @@
 
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 export default {
   data() {
     return {
       enteredName: '',
       chosenRating: null,
       invalidInput: false,
+      error: null
     };
   },
   // emits: ['survey-submit'],
@@ -75,24 +77,33 @@ export default {
       // });
       
       //............ Using Fetch API Inbuilt to send the request ........//
-      // fetch('https://vue-http-demo-85e9e.firebaseio.com/surveys.json', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({
-      //     name: this.enteredName,
-      //     rating: this.chosenRating,
-      //   }),
-      // });
-
-      axios.post(
-        'https://vue-http-7d2b7-default-rtdb.firebaseio.com/surveys.json',
-        {
+      fetch('https://vue-http-7d2b7-default-rtdb.firebaseio.com/surveys.json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           name: this.enteredName,
           rating: this.chosenRating,
-        }
-      );
+        }).then(response =>{
+          if(response.ok){
+             //...
+          }else{
+            throw new Error('Could Not Save The Data!')
+          }
+        })
+      }).catch(error  => {
+          console.log(error)
+          this.error = error.message;
+      });
+
+      // axios.post(
+      //   'https://vue-http-7d2b7-default-rtdb.firebaseio.com/surveys.json',
+      //   {
+      //     name: this.enteredName,
+      //     rating: this.chosenRating,
+      //   }
+      // );
 
       this.enteredName = '';
       this.chosenRating = null;
