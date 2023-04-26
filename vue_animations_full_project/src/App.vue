@@ -4,15 +4,17 @@
     <button @click="animateBlock">Animate</button>
   </div>
   <div class="container">
-    <transition>
+    <transition name="para">
       <p v-if="toggleParagraph">This is Only So Much That can be viewed</p>
     </transition>
     <button @click="togglePara">Toggle-Paragraph</button>
   </div>
-  <base-modal @close="hideDialog" v-if="dialogIsVisible">
+
+  <base-modal @close="hideDialog" :open="dialogIsVisible">
     <p>This is a test dialog!</p>
     <button @click="hideDialog">Close it!</button>
   </base-modal>
+
   <div class="container">
     <button @click="showDialog">Show Dialog</button>
   </div>
@@ -91,6 +93,37 @@ button:active {
   animation: slide-fade 0.3 ease-out forwards;
 }
 
+.para-enter-form {
+  /* opacity: 0;
+   transform: translateX(-30px);   */
+}
+
+.para-enter-active {
+  /* transition: all 0.3s ease-out; */
+  animation: slide-fade 0.3s ease-in;
+}
+
+.para-enter-to {
+  /* opacity: 1;
+  transform: translateY(0); */
+}
+
+.para-leave-from {
+  /* opacity: 1;
+  transform: translateY(0); */
+}
+
+.para-leave-active {
+  animation: slide-fade 0.3s ease-out;
+}
+
+.para-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+
+
 @keyframes slide-fade {
   0% {
     transform: translateX(0) scale(1);
@@ -104,4 +137,5 @@ button:active {
     transform: translateX(-150px) scale(1);
   }
 }
+
 </style>
