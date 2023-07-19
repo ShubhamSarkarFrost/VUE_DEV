@@ -1,0 +1,1 @@
+1 - Install 2 packages - npm install --save vue-router vuex
