@@ -56,7 +56,12 @@ export default {
       };
       console.log(contactFormData)
 
-      // this.$emit('contact-data', contactFormData);
+      this.$store.dispatch('requests/contactCoach', {
+        email: this.email.val,
+        message: this.message.val,
+        coachId: this.$route.params.id,
+      });
+      this.$router.replace('/requests');
     }
   }
 }
