@@ -1,46 +1,71 @@
 <template>
   <section class="container">
     <h2>{{ userName }}</h2>
-    <h3>{{ Age }}</h3>
+    <h3>{{ age }}</h3>
     <button @click="setAge">Change Age</button>
+    <div>
+      <input type="text" placeholder="First Name" v-model="firstName" />
+      <input type="text" placeholder="Last Name" v-model="lastName" />
+    </div>
   </section>
 </template>
 
 <script>
-import { reactive, toRefs } from 'vue';
+import {ref, computed, watch } from 'vue';
 
 export default {
   setup() {
-    // const user_name = ref('Shubham');
-    // const age = ref(12);
+    // const uName = ref('Maximilian');
+    const firstName = ref('');
+    const lastName = ref('');
+    const uAge = ref(31);
+    // const user = reactive({
+    //   name: 'Maximilian',
+    //   age: 31,
+    // });
 
-    const user = reactive({
-      user_name: 'Shubham',
-      age: 12,
+    watch([uAge,uName], function (newValues, oldValues) {
+      console.log('Old Age'+ oldValues[0]);
+      console.log('New Age'+ newValues[0]);
+      console.log('Old Name'+ oldValues[1]);
+      console.log('New Name'+ newValues[1]);
     });
-    
-    const userRefs = toRefs(user);
-    
-    function setUserAge() {
-      user.age = 32;
+
+    const uName = computed(function() {
+      return firstName.value + ' ' + lastName.value;
+    });
+
+    function setNewAge() {
+      uAge.value = 33;
     }
 
-    // setTimeout(function () {
-    //   (user.user_name = 'Joseph'), (user.age = 15);
-    // }, 2000);
+    // function setFirstName(event) {
+    //   firstName.value = event.target.value;
+    // }
+    //
+    // function setLastName(event) {
+    //   lastName.value = event.target.value;
+    // }
 
-    
     return {
-      userName: userRefs.user_name,
-      Age: userRefs.age,
-      setAge: setUserAge,
+      userName: uName,
+      firstName: firstName,
+      lastName: lastName,
+      age: uAge,
+      setAge: setNewAge,
     };
   },
   // data() {
   //   return {
   //     userName: 'Maximilian',
-  //   };l̥
+  //     age: 31
+  //   };
   // },
+  // methods: {
+  //   setNewAge() {
+  //     this.age = 32;
+  //   }
+  // }
 };
 </script>
 
